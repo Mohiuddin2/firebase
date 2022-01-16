@@ -1,17 +1,17 @@
-// Your web app's Firebase configuration
-var firebaseConfig = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
-};
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyB9vsbUcpvJTJll3J1sIu3phH1V_6r59dE",
+    authDomain: "viplevel-39303.firebaseapp.com",
+    projectId: "viplevel-39303",
+    storageBucket: "viplevel-39303.appspot.com",
+    messagingSenderId: "664476424825",
+    appId: "1:664476424825:web:e232b851db956a982f92a8"
+  };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 // Initialize variables
 const auth = firebase.auth()
-const database = firebase.database()
+const database = firebase.database() 
 
 // Set up our register function
 function register () {
@@ -19,8 +19,8 @@ function register () {
   email = document.getElementById('email').value
   password = document.getElementById('password').value
   full_name = document.getElementById('full_name').value
-  favourite_song = document.getElementById('favourite_song').value
-  milk_before_cereal = document.getElementById('milk_before_cereal').value
+//   favourite_song = document.getElementById('favourite_song').value
+//   milk_before_cereal = document.getElementById('milk_before_cereal').value
 
   // Validate input fields
   if (validate_email(email) == false || validate_password(password) == false) {
@@ -28,11 +28,10 @@ function register () {
     return
     // Don't continue running the code
   }
-  if (validate_field(full_name) == false || validate_field(favourite_song) == false || validate_field(milk_before_cereal) == false) {
+  if (validate_field(full_name) == false) {
     alert('One or More Extra Fields is Outta Line!!')
     return
   }
- 
   // Move on with Auth
   auth.createUserWithEmailAndPassword(email, password)
   .then(function() {
@@ -46,9 +45,8 @@ function register () {
     var user_data = {
       email : email,
       full_name : full_name,
-      favourite_song : favourite_song,
-      milk_before_cereal : milk_before_cereal,
-      last_login : Date.now()
+      password: password,
+    //   last_login : Date.now()
     }
 
     // Push to Firebase Database
@@ -96,8 +94,8 @@ function login () {
     database_ref.child('users/' + user.uid).update(user_data)
 
     // DOne
-    alert('User Logged In!!')
-
+    // alert('User Logged In!!')
+    window.location.replace("http://www.viplevel.one");
   })
   .catch(function(error) {
     // Firebase will use this to alert of its errors
